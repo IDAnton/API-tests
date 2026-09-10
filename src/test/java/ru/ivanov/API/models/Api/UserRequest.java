@@ -1,4 +1,4 @@
-package ru.ivanov.models.Api;
+package ru.ivanov.API.models.Api;
 
 public record UserRequest(
         String name,

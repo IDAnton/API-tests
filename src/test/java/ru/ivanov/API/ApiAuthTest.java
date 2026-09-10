@@ -1,17 +1,17 @@
-package ru.ivanov;
+package ru.ivanov.API;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import ru.ivanov.models.AuthApi.AuthRequest;
+import ru.ivanov.API.models.AuthApi.AuthRequest;
 
 import static org.hamcrest.Matchers.*;
 
-import ru.ivanov.models.AuthApi.Bookingdates;
-import ru.ivanov.models.AuthApi.CreateBookingRequest;
-import ru.ivanov.tools.AuthSpecification;
+import ru.ivanov.API.models.AuthApi.Bookingdates;
+import ru.ivanov.API.models.AuthApi.CreateBookingRequest;
+import ru.ivanov.API.tools.AuthSpecification;
 
 import java.math.BigDecimal;
 import java.util.stream.Stream;

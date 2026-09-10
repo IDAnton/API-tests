@@ -1,4 +1,4 @@
-package ru.ivanov.tools;
+package ru.ivanov.API.tools;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +9,7 @@ import java.util.Properties;
 public class QueryManager {
     private static final Map<String, String> queries = new HashMap<>();
     static {
-        String fileName = "sql_queries.properties";
+        String fileName = "API/sql_queries.properties";
         try (InputStream input = QueryManager.class.getClassLoader().getResourceAsStream(fileName)) {
             if (input == null) {
                 throw new RuntimeException("Не удалось найти файл ресурсов с запросами: " + fileName);

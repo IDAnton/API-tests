@@ -1,4 +1,4 @@
-package ru.ivanov.models.AuthApi;
+package ru.ivanov.API.models.AuthApi;
 
 import java.math.BigDecimal;
 

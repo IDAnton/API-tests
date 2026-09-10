@@ -1,14 +1,14 @@
-package ru.ivanov;
+package ru.ivanov.API;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import ru.ivanov.models.Api.UserRequest;
-import ru.ivanov.models.Api.UserResponse;
+import ru.ivanov.API.models.Api.UserRequest;
+import ru.ivanov.API.models.Api.UserResponse;
 import org.assertj.core.api.SoftAssertions;
-import ru.ivanov.tools.ApiRequestSpecification;
+import ru.ivanov.API.tools.ApiRequestSpecification;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
@@ -26,7 +26,7 @@ public class ApiTest {
                 .then()
                 .log().ifValidationFails()
                 .statusCode(200)
-                .body(matchesJsonSchemaInClasspath("users_list_schema.json"));
+                .body(matchesJsonSchemaInClasspath("API/users_list_schema.json"));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class ApiTest {
                 .then()
                 .log().ifValidationFails()
                 .statusCode(201)
-                .body(matchesJsonSchemaInClasspath("create_user_schema.json"))
+                .body(matchesJsonSchemaInClasspath("API/create_user_schema.json"))
                 .extract().as(UserResponse.class);
 
         try {

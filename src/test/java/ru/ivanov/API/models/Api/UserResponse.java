@@ -1,4 +1,4 @@
-package ru.ivanov.models.Api;
+package ru.ivanov.API.models.Api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

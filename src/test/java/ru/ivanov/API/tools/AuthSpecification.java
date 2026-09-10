@@ -1,4 +1,4 @@
-package ru.ivanov.tools;
+package ru.ivanov.API.tools;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;

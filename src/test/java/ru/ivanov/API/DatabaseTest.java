@@ -1,13 +1,12 @@
-package ru.ivanov;
+package ru.ivanov.API;
 
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import ru.ivanov.models.Db.DbUserResponse;
-import ru.ivanov.tools.DbManager;
+import ru.ivanov.API.models.Db.DbUserResponse;
+import ru.ivanov.API.tools.DbManager;
 
-import java.io.*;
 import java.math.BigDecimal;
 import java.sql.*;
 
@@ -30,7 +29,7 @@ public class DatabaseTest {
     }
 
     @ParameterizedTest(name = "Поиск пользователя с email = {2}")
-    @CsvFileSource(resources = "/users.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/API/users.csv", numLinesToSkip = 1)
     @DisplayName("Поиск пользователя по email")
     void testInsertUserAndOrderInTransaction(int id, String name, String email, String status, String createdAt) {
         DbUserResponse dbUser = DbManager.executeQuery("SQL_SELECT_BY_EMAIL", rs -> {

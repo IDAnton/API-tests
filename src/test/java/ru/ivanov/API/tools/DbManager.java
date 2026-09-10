@@ -1,4 +1,4 @@
-package ru.ivanov.tools;
+package ru.ivanov.API.tools;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -10,11 +10,11 @@ import java.util.Properties;
 
 public class DbManager {
     private static final Properties dbProperties = new Properties();
-    public static final String usersCsvFile = "src/test/resources/users.csv";
-    private static final String ordersCsvFile = "src/test/resources/orders.csv";
+    public static final String usersCsvFile = "src/test/resources/API/users.csv";
+    private static final String ordersCsvFile = "src/test/resources/API/orders.csv";
 
     static {
-        try (InputStream input = DbManager.class.getClassLoader().getResourceAsStream("database.properties")) {
+        try (InputStream input = DbManager.class.getClassLoader().getResourceAsStream("API/database.properties")) {
             if (input == null) {
                 throw new RuntimeException("Не найден database.properties");
             }
