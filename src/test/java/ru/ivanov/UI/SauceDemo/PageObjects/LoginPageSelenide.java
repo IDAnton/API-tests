@@ -13,7 +13,11 @@ public class LoginPageSelenide {
     private final SelenideElement loginButton = $("[data-test='login-button']");
     private final SelenideElement inventoryContainer = $("[data-test='inventory-container']");
     private final SelenideElement errorMessage = $("[data-test='error']");
-    private final String baseUrl = "https://saucedemo.com";
+    private final String baseUrl;
+
+    public LoginPageSelenide(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
 
     public LoginPageSelenide openLoginPage() {
         open(baseUrl);

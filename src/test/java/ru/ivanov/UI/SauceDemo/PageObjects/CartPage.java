@@ -1,0 +1,33 @@
+package ru.ivanov.UI.SauceDemo.PageObjects;
+
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+import ru.ivanov.UI.SauceDemo.PageObjects.Items.CartItem;
+
+import java.util.List;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
+public class CartPage implements CartItemsHolder {
+    private final SelenideElement inventoryLink = $("[data-test='continue-shopping']");
+    private final SelenideElement checkoutLink = $("[data-test='checkout']");
+    private final ElementsCollection cartItems = $$("[data-test='inventory-item]'");
+
+    @Override
+    public List<CartItem> getAllCartItems() {
+        return cartItems.stream()
+                .map(CartItem::new)
+                .toList();
+    }
+
+    public CartPage clickCheckoutButton() {
+        checkoutLink.click();
+        return this;
+    }
+
+    public CartPage clickBackToInventory() {
+        inventoryLink.click();
+        return this;
+    }
+}
