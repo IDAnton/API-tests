@@ -2,7 +2,7 @@ package ru.ivanov.UI.SauceDemo.PageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import ru.ivanov.UI.SauceDemo.PageObjects.Items.InventoryItem;
+import ru.ivanov.UI.SauceDemo.PageObjects.Items.ShopItem;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,16 +14,16 @@ public class InventoryPage {
     private final ElementsCollection inventoryItems = $$("[data-test='inventory-item']");
     private final SelenideElement shoppingCartLink = $("[data-test='shopping-cart-link']");
 
-    public List<InventoryItem> getAllProducts() {
+    public List<ShopItem> getAllProducts() {
         return inventoryItems.stream()
-                .map(InventoryItem::new)
+                .map(ShopItem::new)
                 .toList();
     }
 
-    public Optional<InventoryItem> getProductByName(String productName) {
+    public Optional<ShopItem> getProductByName(String productName) {
         return inventoryItems.stream()
-                .map(InventoryItem::new)
-                .filter(inventoryItem -> inventoryItem.getName().equals(productName))
+                .map(ShopItem::new)
+                .filter(shopItem -> shopItem.getName().equals(productName))
                 .findFirst();
     }
 

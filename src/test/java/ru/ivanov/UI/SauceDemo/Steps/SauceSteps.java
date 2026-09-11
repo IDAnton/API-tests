@@ -1,7 +1,10 @@
 package ru.ivanov.UI.SauceDemo.Steps;
 
 import ru.ivanov.UI.SauceDemo.PageObjects.*;
-import ru.ivanov.UI.SauceDemo.PageObjects.Items.InventoryItem;
+import ru.ivanov.UI.SauceDemo.PageObjects.Items.CartItem;
+import ru.ivanov.UI.SauceDemo.PageObjects.Items.ShopItem;
+
+import java.util.List;
 
 public class SauceSteps {
     private final LoginPageSelenide loginPage;
@@ -20,20 +23,24 @@ public class SauceSteps {
         return this;
     }
 
-    public SauceSteps addFirstItemToCart(int n) {
-        inventoryPage.getAllProducts().stream().limit(n).forEach(InventoryItem::addToCart);
-        return this;
+    public List<ShopItem> addFirstItemsToCart(int n) {
+        inventoryPage.getAllProducts().stream().limit(n).forEach(ShopItem::addToCart);
+        return inventoryPage.getAllProducts().stream().limit(n).toList();
     }
 
     public SauceSteps checkoutWithCredentials(String firstName, String lastName, String postalCode) {
         inventoryPage.clickCart();
         cartPage.clickCheckoutButton();
         checkoutPage.enterFirstName(firstName).enterLastName(lastName).enterPostalCode(postalCode).clickContinueButton();
-        checkoutFinalPage.clickFinishButton();
         return this;
     }
 
-    public boolean verifyCheckout() {
+    public List<CartItem> getFinalCartItems() {
+        return checkoutFinalPage.getAllCartItems();
+    }
+
+    public boolean finishAndVerifyCheckout() {
+        checkoutFinalPage.clickFinishButton();
         return checkoutCompletePage.isComplete();
     }
 }
