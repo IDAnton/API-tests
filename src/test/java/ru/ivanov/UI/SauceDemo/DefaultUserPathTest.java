@@ -40,8 +40,8 @@ public class DefaultUserPathTest {
 
         SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(shopItems)
-                    .containsExactlyInAnyOrderElementsOf(addedItems);
-            softly.assertThat(result).isEqualTo(true);
+                    .containsExactlyInAnyOrderElementsOf(addedItems); // Проверка, что мы действительно покупаем товары которые хотим (первые два)
+            softly.assertThat(result).isEqualTo(true); // Проверка, что отобразилась финальная страница покупки
         });
     }
 }
