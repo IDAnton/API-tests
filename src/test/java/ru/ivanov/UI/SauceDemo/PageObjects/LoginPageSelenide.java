@@ -8,10 +8,10 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPageSelenide {
-    private final SelenideElement usernameInput = $("#user-name");
-    private final SelenideElement passwordInput = $("#password");
-    private final SelenideElement loginButton = $("#login-button");
-    private final SelenideElement inventoryContainer = $("#inventory_container");
+    private final SelenideElement usernameInput = $("[data-test='username']");
+    private final SelenideElement passwordInput = $("[data-test='password']");
+    private final SelenideElement loginButton = $("[data-test='login-button']");
+    private final SelenideElement inventoryContainer = $("[data-test='inventory-container']");
     private final SelenideElement errorMessage = $("[data-test='error']");
     private final String baseUrl = "https://saucedemo.com";
 
