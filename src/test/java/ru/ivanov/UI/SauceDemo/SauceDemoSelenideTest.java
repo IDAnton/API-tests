@@ -9,6 +9,7 @@ import ru.ivanov.UI.SauceDemo.PageObjects.LoginPageSelenide;
 
 
 public class SauceDemoSelenideTest {
+    private final static String baseUrl = "https://saucedemo.com";
     private final String loginErrorMessage = "Epic sadface: Username and password do not match any user in this service";
     private LoginPageSelenide loginPage;
 
@@ -19,7 +20,7 @@ public class SauceDemoSelenideTest {
 
     @BeforeEach
     void setUp() {
-        loginPage = new LoginPageSelenide();
+        loginPage = new LoginPageSelenide(baseUrl);
     }
 
     @Test
