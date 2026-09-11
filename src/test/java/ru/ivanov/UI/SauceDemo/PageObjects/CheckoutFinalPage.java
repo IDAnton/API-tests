@@ -4,12 +4,12 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import ru.ivanov.UI.SauceDemo.PageObjects.Items.CartItem;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class CheckoutFinalPage implements CartItemsHolder {
+public class CheckoutFinalPage {
     private final SelenideElement cancelButton = $("[data-test='cancel']");
     private final SelenideElement finishButton = $("[data-test='finish']");
     private final ElementsCollection cartItems = $$("[data-test='inventory-item']");
@@ -17,11 +17,8 @@ public class CheckoutFinalPage implements CartItemsHolder {
     private final SelenideElement shippingInfo = $("[data-test='shipping-info-value']");
     private final SelenideElement totalPrice = $("[data-test='total-label']");
 
-    @Override
-    public List<CartItem> getAllCartItems() {
-        return cartItems.stream()
-                .map(CartItem::new)
-                .toList();
+    public Stream<CartItem> getAllItems() {
+        return cartItems.stream().map(CartItem::new);
     }
 
     public CheckoutFinalPage clickCancelButton() {

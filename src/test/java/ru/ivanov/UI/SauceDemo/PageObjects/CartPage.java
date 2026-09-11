@@ -9,13 +9,12 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class CartPage implements CartItemsHolder {
+public class CartPage {
     private final SelenideElement inventoryLink = $("[data-test='continue-shopping']");
     private final SelenideElement checkoutLink = $("[data-test='checkout']");
     private final ElementsCollection cartItems = $$("[data-test='inventory-item]'");
 
-    @Override
-    public List<CartItem> getAllCartItems() {
+    public List<CartItem> getAllItems() {
         return cartItems.stream()
                 .map(CartItem::new)
                 .toList();

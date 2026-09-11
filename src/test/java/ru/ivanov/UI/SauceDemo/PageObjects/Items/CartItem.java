@@ -3,7 +3,7 @@ package ru.ivanov.UI.SauceDemo.PageObjects.Items;
 import com.codeborne.selenide.SelenideElement;
 import ru.ivanov.UI.SauceDemo.PageObjects.DTO.Item;
 
-public class CartItem {
+public class CartItem implements InventoryItem {
     private final SelenideElement parentElement;
     private final String removeButton = "[data-test*='remove-sauce']";
     private final String itemNameField = "[data-test='inventory-item-name']";
@@ -30,6 +30,7 @@ public class CartItem {
         parentElement.$(removeButton).click();
     }
 
+    @Override
     public Item toData() {
         return new Item(getItemNameField(), getItemPriceField());
     }

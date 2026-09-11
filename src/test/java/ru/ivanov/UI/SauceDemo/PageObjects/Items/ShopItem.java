@@ -18,8 +18,9 @@ public class ShopItem implements InventoryItem {
         return parentElement.$("[data-test='inventory-item-price']").getText();
     }
 
-    public void addToCart() {
+    public ShopItem addToCart() {
         parentElement.$("[data-test*='add-to-cart']").click();
+        return this;
     }
 
     @Override

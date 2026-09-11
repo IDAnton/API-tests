@@ -1,6 +1,7 @@
 package ru.ivanov.UI.SauceDemo.Steps;
 
 import ru.ivanov.UI.SauceDemo.PageObjects.*;
+import ru.ivanov.UI.SauceDemo.PageObjects.DTO.Item;
 import ru.ivanov.UI.SauceDemo.PageObjects.Items.CartItem;
 import ru.ivanov.UI.SauceDemo.PageObjects.Items.ShopItem;
 
@@ -23,9 +24,12 @@ public class SauceSteps {
         return this;
     }
 
-    public List<ShopItem> addFirstItemsToCart(int n) {
-        inventoryPage.getAllProducts().stream().limit(n).forEach(ShopItem::addToCart);
-        return inventoryPage.getAllProducts().stream().limit(n).toList();
+    public List<Item> addFirstItemsToCart(int n) {
+        return inventoryPage.getAllProducts()
+                .limit(n)
+                .map(ShopItem::addToCart)
+                .map(ShopItem::toData)
+                .toList();
     }
 
     public SauceSteps checkoutWithCredentials(String firstName, String lastName, String postalCode) {
@@ -35,8 +39,8 @@ public class SauceSteps {
         return this;
     }
 
-    public List<CartItem> getFinalCartItems() {
-        return checkoutFinalPage.getAllCartItems();
+    public List<Item> getFinalCartItems() {
+        return checkoutFinalPage.getAllItems().map(CartItem::toData).toList();
     }
 
     public boolean finishAndVerifyCheckout() {

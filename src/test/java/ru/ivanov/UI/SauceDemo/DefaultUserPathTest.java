@@ -4,8 +4,6 @@ import org.aeonbits.owner.ConfigFactory;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
 import ru.ivanov.UI.SauceDemo.PageObjects.DTO.Item;
-import ru.ivanov.UI.SauceDemo.PageObjects.Items.CartItem;
-import ru.ivanov.UI.SauceDemo.PageObjects.Items.InventoryItem;
 import ru.ivanov.UI.SauceDemo.Steps.SauceSteps;
 import ru.ivanov.UI.SauceDemo.tools.Configuration;
 
@@ -24,24 +22,14 @@ public class DefaultUserPathTest {
     @DisplayName("Логин и покупка товаров")
     public void defaultUserPathTest() {
         SauceSteps steps = new SauceSteps(configuration.url());
-        List<Item> shopItems = steps.login(configuration.username(), configuration.password()).addFirstItemsToCart(2)
-                .stream()
-                .map(InventoryItem::toData)
-                .toList();
-
+        List<Item> shopItems = steps.login(configuration.username(), configuration.password()).addFirstItemsToCart(2);
         steps.checkoutWithCredentials("Anton", "Ivanov", "880000");
-
-        List<Item> addedItems = steps.getFinalCartItems()
-                .stream()
-                .map(CartItem::toData)
-                .toList();
-
-        boolean result = steps.finishAndVerifyCheckout();
-
+        List<Item> addedItems = steps.getFinalCartItems();
+        boolean purchaseResult = steps.finishAndVerifyCheckout();
         SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(shopItems)
                     .containsExactlyInAnyOrderElementsOf(addedItems); // Проверка, что мы действительно покупаем товары которые выбрали
-            softly.assertThat(result).isEqualTo(true); // Проверка, что отобразилась финальная страница покупки
+            softly.assertThat(purchaseResult).isEqualTo(true); // Проверка, что отобразилась финальная страница покупки
         });
     }
 }
