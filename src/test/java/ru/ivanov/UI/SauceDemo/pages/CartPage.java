@@ -1,8 +1,8 @@
-package ru.ivanov.UI.SauceDemo.PageObjects;
+package ru.ivanov.UI.SauceDemo.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import ru.ivanov.UI.SauceDemo.PageObjects.Items.CartItem;
+import ru.ivanov.UI.SauceDemo.pages.items.CartItem;
 
 import java.util.List;
 

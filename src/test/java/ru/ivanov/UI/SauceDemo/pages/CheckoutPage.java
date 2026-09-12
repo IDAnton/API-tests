@@ -1,4 +1,4 @@
-package ru.ivanov.UI.SauceDemo.PageObjects;
+package ru.ivanov.UI.SauceDemo.pages;
 
 import com.codeborne.selenide.SelenideElement;
 

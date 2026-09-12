@@ -1,9 +1,9 @@
-package ru.ivanov.UI.SauceDemo.Steps;
+package ru.ivanov.UI.SauceDemo.steps;
 
-import ru.ivanov.UI.SauceDemo.PageObjects.*;
-import ru.ivanov.UI.SauceDemo.PageObjects.DTO.Item;
-import ru.ivanov.UI.SauceDemo.PageObjects.Items.CartItem;
-import ru.ivanov.UI.SauceDemo.PageObjects.Items.ShopItem;
+import ru.ivanov.UI.SauceDemo.pages.*;
+import ru.ivanov.UI.SauceDemo.pages.dto.Item;
+import ru.ivanov.UI.SauceDemo.pages.items.CartItem;
+import ru.ivanov.UI.SauceDemo.pages.items.ShopItem;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package ru.ivanov.UI.SauceDemo.PageObjects.Items;
+package ru.ivanov.UI.SauceDemo.pages.items;
 
 import com.codeborne.selenide.SelenideElement;
-import ru.ivanov.UI.SauceDemo.PageObjects.DTO.Item;
+import ru.ivanov.UI.SauceDemo.pages.dto.Item;
 
 public class CartItem implements InventoryItem {
     private final SelenideElement parentElement;

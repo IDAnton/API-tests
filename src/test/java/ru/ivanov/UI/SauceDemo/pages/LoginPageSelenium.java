@@ -1,4 +1,4 @@
-package ru.ivanov.UI.SauceDemo.PageObjects;
+package ru.ivanov.UI.SauceDemo.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

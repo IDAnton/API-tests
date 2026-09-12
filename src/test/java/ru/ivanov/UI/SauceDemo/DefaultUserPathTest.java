@@ -3,8 +3,8 @@ package ru.ivanov.UI.SauceDemo;
 import org.aeonbits.owner.ConfigFactory;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
-import ru.ivanov.UI.SauceDemo.PageObjects.DTO.Item;
-import ru.ivanov.UI.SauceDemo.Steps.SauceSteps;
+import ru.ivanov.UI.SauceDemo.pages.dto.Item;
+import ru.ivanov.UI.SauceDemo.steps.SauceSteps;
 import ru.ivanov.UI.SauceDemo.tools.Configuration;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package ru.ivanov.UI.SauceDemo.PageObjects.DTO;
+package ru.ivanov.UI.SauceDemo.pages.dto;
 
 public record Item(String name, String price) {
 }

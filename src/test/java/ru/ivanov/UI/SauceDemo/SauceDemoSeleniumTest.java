@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import ru.ivanov.UI.SauceDemo.PageObjects.LoginPageSelenium;
+import ru.ivanov.UI.SauceDemo.pages.LoginPageSelenium;
 
 public class SauceDemoSeleniumTest {
     private final String loginErrorMessage = "Epic sadface: Username and password do not match any user in this service";

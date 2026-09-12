@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.ivanov.UI.SauceDemo.PageObjects.LoginPageSelenide;
+import ru.ivanov.UI.SauceDemo.pages.LoginPageSelenide;
 
 
 public class SauceDemoSelenideTest {
