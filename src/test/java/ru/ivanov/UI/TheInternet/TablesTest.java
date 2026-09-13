@@ -22,16 +22,16 @@ public class TablesTest {
 
     @ParameterizedTest(name = "{1}")
     @MethodSource("xPathProvider")
-    void testTableElementsExistAndClickable(By locator, String description, String quantity) {
+    void testTableElementsExistAndClickable(By locator, String description, int quantity) {
         open("/tables");
-        if (quantity.equals("many")) {
-            $$(locator).shouldHave(size(4));
+        if (quantity > 1) {
+            $$(locator).shouldHave(size(quantity));
             $$(locator).forEach(element ->
                     element.shouldBe(Condition.exist)
                             .shouldBe(Condition.visible)
                             .shouldBe(Condition.clickable)
             );
-        } else if (quantity.equals("single")) {
+        } else {
             $(locator)
                     .shouldBe(Condition.exist)
                     .shouldBe(Condition.visible)
@@ -43,17 +43,17 @@ public class TablesTest {
         return Stream.of(
                 Arguments.of(
                         By.xpath("//table[@id='table1']/tbody/tr/td[normalize-space()='Smith']/following-sibling::td[contains(text(), '@')]"),
-                        "Email Smith", "single"
+                        "Email Smith", 1
                 ),
 
                 Arguments.of(
                         By.xpath("//table[@id='table1']/tbody/tr/td[contains(text(), '$100.00')]/ancestor::tr//a[normalize-space()='edit']"),
-                        "edit со значением $100.00", "single"
+                        "edit со значением $100.00", 1
                 ),
 
                 Arguments.of(
                         By.xpath("//table[@id='table1']/tbody/tr/td[starts-with(normalize-space(), 'http://')]"),
-                        "Ссылки на http://", "many"
+                        "Ссылки на http://", 4
                 )
         );
     }
