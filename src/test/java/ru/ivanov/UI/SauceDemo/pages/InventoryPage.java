@@ -4,7 +4,6 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import ru.ivanov.UI.SauceDemo.pages.items.ShopItem;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -18,11 +17,12 @@ public class InventoryPage {
         return inventoryItems.stream().map(ShopItem::new);
     }
 
-    public Optional<ShopItem> getProductByName(String productName) {
+    public ShopItem getProductByName(String productName) {
         return inventoryItems.stream()
                 .map(ShopItem::new)
                 .filter(shopItem -> shopItem.getName().equals(productName))
-                .findFirst();
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Продукт с именем '%s' не найден".formatted(productName)));
     }
 
     public InventoryPage clickCart() {
