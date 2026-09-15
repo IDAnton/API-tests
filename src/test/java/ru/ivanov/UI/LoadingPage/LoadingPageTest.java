@@ -21,9 +21,9 @@ public class LoadingPageTest {
     @Test
     void testDynamicElementLoadingAndColorChange() {
         open("/dynamic_loading/2");
-        $("#start button").click();
-        var finishText = $("#finish h4");
+        $("[id = 'start'] button").click();
+        var finishText = $("[id = 'finish'] h4");
         finishText.shouldBe(visible, Duration.ofSeconds(10));
-        finishText.should(textColorIs("rgb(0, 0, 0)"), Duration.ofSeconds(10));
+        finishText.should(textColorIs("rgba(34, 34, 34, 1)"), Duration.ofSeconds(10));
     }
 }
