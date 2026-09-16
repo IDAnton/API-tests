@@ -1,7 +1,8 @@
 package ru.ivanov.UI.Login;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import org.aeonbits.owner.ConfigFactory;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -9,27 +10,22 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class LoginTest {
+    static LoginConfiguration loginConfig;
 
     @BeforeAll
     static void setup() {
-        Configuration.baseUrl = "https://the-internet.herokuapp.com/";
+        loginConfig = ConfigFactory.create(LoginConfiguration.class);
+        Configuration.baseUrl = loginConfig.baseUrl();
     }
 
     @ParameterizedTest(name = "Тест авторизации {3}")
     @MethodSource("loginDataProvider")
-    void testLoginNegativeScenarios(String username, String password, String expectedError, String testName) {
-        open("/login");
-        $("#username").setValue(username);
-        $("#password").setValue(password);
-        $("button[type='submit']").click();
-
-        $("#flash")
-                .shouldBe(Condition.visible)
-                .shouldHave(Condition.text(expectedError));
+    void testLoginNegativeScenarios(String username, String password, String expectedText, String testName) {
+        LoginSteps loginSteps = new LoginSteps(loginConfig.loginUrl());
+        boolean loginResult = loginSteps.loginWithCredentials(username, password).isLogged(expectedText);
+        Assertions.assertTrue(loginResult);
     }
 
     static Stream<Arguments> loginDataProvider() {
