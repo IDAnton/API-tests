@@ -7,16 +7,17 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.ivanov.UI.TheInternet.TheInternetConfiguration;
 
 import java.util.stream.Stream;
 
 
 public class LoginTest {
-    static LoginConfiguration loginConfig;
+    static TheInternetConfiguration loginConfig;
 
     @BeforeAll
     static void setup() {
-        loginConfig = ConfigFactory.create(LoginConfiguration.class);
+        loginConfig = ConfigFactory.create(TheInternetConfiguration.class);
         Configuration.baseUrl = loginConfig.baseUrl();
     }
 

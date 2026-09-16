@@ -1,29 +1,26 @@
 package ru.ivanov.UI.LoadingPage;
 
 import com.codeborne.selenide.Configuration;
+import org.aeonbits.owner.ConfigFactory;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.time.Duration;
-
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static ru.ivanov.UI.LoadingPage.ColorCondition.textColorIs;
+import ru.ivanov.UI.TheInternet.TheInternetConfiguration;
 
 public class LoadingPageTest {
+    static String loadedColor = "rgba(34, 34, 34, 1)";
+    static TheInternetConfiguration config;
 
     @BeforeAll
     static void setup() {
-        Configuration.baseUrl = "https://the-internet.herokuapp.com/";
+        config = ConfigFactory.create(TheInternetConfiguration.class);
+        Configuration.baseUrl = config.baseUrl();
     }
 
     @Test
     void testDynamicElementLoadingAndColorChange() {
-        open("/dynamic_loading/2");
-        $("[id = 'start'] button").click();
-        var finishText = $("[id = 'finish'] h4");
-        finishText.shouldBe(visible, Duration.ofSeconds(10));
-        finishText.should(textColorIs("rgba(34, 34, 34, 1)"), Duration.ofSeconds(10));
+        LoadingPage loadingPage = new LoadingPage(config.loadingUrl());
+        boolean result = loadingPage.isLoaded(loadedColor);
+        Assertions.assertTrue(result);
     }
 }
