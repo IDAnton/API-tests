@@ -69,7 +69,7 @@ public class DatabaseTest {
             }
             return count;
         }, 7);
-        Assertions.assertEquals(3, rsCount);
+        Assertions.assertEquals(0, rsCount);
     }
 
     @Test

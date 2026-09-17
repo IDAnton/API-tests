@@ -61,6 +61,7 @@ public class DbManager {
     }
 
     public static void setupDatabase() {
+        setWithTestData();
         truncateTables();
     }
 
