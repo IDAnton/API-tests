@@ -17,7 +17,7 @@ public class TestConsumer {
     private final DbManager dbManager;
     private final AtomicBoolean running = new AtomicBoolean(true);
 
-    public TestConsumer(String bootstrapServers, DbManager dbManager) {
+    public TestConsumer(String bootstrapServers, DbManager dbManager, String topic) {
         this.dbManager = dbManager;
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -26,6 +26,7 @@ public class TestConsumer {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         this.consumer = new KafkaConsumer<>(props);
+        startConsumeLoop(topic);
     }
 
     public void startConsumeLoop(String topic) {

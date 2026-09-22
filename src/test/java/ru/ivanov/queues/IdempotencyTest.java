@@ -30,11 +30,9 @@ public class IdempotencyTest {
     @Test
     void testConsumerIdempotencyWithDuplicateMessages() {
         TestProducer producer = new TestProducer(kafka.getBootstrapServers());
-        TestConsumer consumer = new TestConsumer(kafka.getBootstrapServers(), dbManager);
+        TestConsumer consumer = new TestConsumer(kafka.getBootstrapServers(), dbManager, TOPIC);
 
-        consumer.startConsumeLoop(TOPIC);
         Message duplicateEvent = new Message("123", "PAID");
-
         producer.send(TOPIC, duplicateEvent);
         producer.send(TOPIC, duplicateEvent);
         producer.send(TOPIC, duplicateEvent);
